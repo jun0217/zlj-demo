@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mbg.mapper.XkjcZbxGcdYjMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.mbg.model.XkjcZbxGcdYj">
+    <id column="bh" jdbcType="INTEGER" property="bh" />
+    <result column="yj_gcd_mc" jdbcType="VARCHAR" property="yjGcdMc" />
+    <result column="zbx_bh" jdbcType="VARCHAR" property="zbxBh" />
+    <result column="zbx_mc" jdbcType="VARCHAR" property="zbxMc" />
+    <result column="gcd_bh" jdbcType="VARCHAR" property="gcdBh" />
+    <result column="gcd_mc" jdbcType="VARCHAR" property="gcdMc" />
+    <result column="filter" jdbcType="VARCHAR" property="filter" />
+    <result column="time_type" jdbcType="INTEGER" property="timeType" />
+    <result column="attribute_name_in_db" jdbcType="VARCHAR" property="attributeNameInDb" />
+    <result column="attribute_value" jdbcType="VARCHAR" property="attributeValue" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    bh, yj_gcd_mc, zbx_bh, zbx_mc, gcd_bh, gcd_mc, filter, time_type, attribute_name_in_db, 
+    attribute_value, create_time, create_user, update_user, update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.example.demo.mbg.model.XkjcZbxGcdYjExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from xkjc_zbx_gcd_yj
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xkjc_zbx_gcd_yj
+    where bh = #{bh,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from xkjc_zbx_gcd_yj
+    where bh = #{bh,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.demo.mbg.model.XkjcZbxGcdYjExample">
+    delete from xkjc_zbx_gcd_yj
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.mbg.model.XkjcZbxGcdYj">
+    <selectKey keyProperty="bh" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into xkjc_zbx_gcd_yj (yj_gcd_mc, zbx_bh, zbx_mc, 
+      gcd_bh, gcd_mc, filter, 
+      time_type, attribute_name_in_db, attribute_value, 
+      create_time, create_user, update_user, 
+      update_time)
+    values (#{yjGcdMc,jdbcType=VARCHAR}, #{zbxBh,jdbcType=VARCHAR}, #{zbxMc,jdbcType=VARCHAR}, 
+      #{gcdBh,jdbcType=VARCHAR}, #{gcdMc,jdbcType=VARCHAR}, #{filter,jdbcType=VARCHAR}, 
+      #{timeType,jdbcType=INTEGER}, #{attributeNameInDb,jdbcType=VARCHAR}, #{attributeValue,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.mbg.model.XkjcZbxGcdYj">
+    <selectKey keyProperty="bh" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into xkjc_zbx_gcd_yj
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="yjGcdMc != null">
+        yj_gcd_mc,
+      </if>
+      <if test="zbxBh != null">
+        zbx_bh,
+      </if>
+      <if test="zbxMc != null">
+        zbx_mc,
+      </if>
+      <if test="gcdBh != null">
+        gcd_bh,
+      </if>
+      <if test="gcdMc != null">
+        gcd_mc,
+      </if>
+      <if test="filter != null">
+        filter,
+      </if>
+      <if test="timeType != null">
+        time_type,
+      </if>
+      <if test="attributeNameInDb != null">
+        attribute_name_in_db,
+      </if>
+      <if test="attributeValue != null">
+        attribute_value,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="yjGcdMc != null">
+        #{yjGcdMc,jdbcType=VARCHAR},
+      </if>
+      <if test="zbxBh != null">
+        #{zbxBh,jdbcType=VARCHAR},
+      </if>
+      <if test="zbxMc != null">
+        #{zbxMc,jdbcType=VARCHAR},
+      </if>
+      <if test="gcdBh != null">
+        #{gcdBh,jdbcType=VARCHAR},
+      </if>
+      <if test="gcdMc != null">
+        #{gcdMc,jdbcType=VARCHAR},
+      </if>
+      <if test="filter != null">
+        #{filter,jdbcType=VARCHAR},
+      </if>
+      <if test="timeType != null">
+        #{timeType,jdbcType=INTEGER},
+      </if>
+      <if test="attributeNameInDb != null">
+        #{attributeNameInDb,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue != null">
+        #{attributeValue,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.demo.mbg.model.XkjcZbxGcdYjExample" resultType="java.lang.Integer">
+    select count(*) from xkjc_zbx_gcd_yj
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update xkjc_zbx_gcd_yj
+    <set>
+      <if test="record.bh != null">
+        bh = #{record.bh,jdbcType=INTEGER},
+      </if>
+      <if test="record.yjGcdMc != null">
+        yj_gcd_mc = #{record.yjGcdMc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zbxBh != null">
+        zbx_bh = #{record.zbxBh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zbxMc != null">
+        zbx_mc = #{record.zbxMc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gcdBh != null">
+        gcd_bh = #{record.gcdBh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gcdMc != null">
+        gcd_mc = #{record.gcdMc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.filter != null">
+        filter = #{record.filter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.timeType != null">
+        time_type = #{record.timeType,jdbcType=INTEGER},
+      </if>
+      <if test="record.attributeNameInDb != null">
+        attribute_name_in_db = #{record.attributeNameInDb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attributeValue != null">
+        attribute_value = #{record.attributeValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUser != null">
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateUser != null">
+        update_user = #{record.updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update xkjc_zbx_gcd_yj
+    set bh = #{record.bh,jdbcType=INTEGER},
+      yj_gcd_mc = #{record.yjGcdMc,jdbcType=VARCHAR},
+      zbx_bh = #{record.zbxBh,jdbcType=VARCHAR},
+      zbx_mc = #{record.zbxMc,jdbcType=VARCHAR},
+      gcd_bh = #{record.gcdBh,jdbcType=VARCHAR},
+      gcd_mc = #{record.gcdMc,jdbcType=VARCHAR},
+      filter = #{record.filter,jdbcType=VARCHAR},
+      time_type = #{record.timeType,jdbcType=INTEGER},
+      attribute_name_in_db = #{record.attributeNameInDb,jdbcType=VARCHAR},
+      attribute_value = #{record.attributeValue,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      update_user = #{record.updateUser,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.mbg.model.XkjcZbxGcdYj">
+    update xkjc_zbx_gcd_yj
+    <set>
+      <if test="yjGcdMc != null">
+        yj_gcd_mc = #{yjGcdMc,jdbcType=VARCHAR},
+      </if>
+      <if test="zbxBh != null">
+        zbx_bh = #{zbxBh,jdbcType=VARCHAR},
+      </if>
+      <if test="zbxMc != null">
+        zbx_mc = #{zbxMc,jdbcType=VARCHAR},
+      </if>
+      <if test="gcdBh != null">
+        gcd_bh = #{gcdBh,jdbcType=VARCHAR},
+      </if>
+      <if test="gcdMc != null">
+        gcd_mc = #{gcdMc,jdbcType=VARCHAR},
+      </if>
+      <if test="filter != null">
+        filter = #{filter,jdbcType=VARCHAR},
+      </if>
+      <if test="timeType != null">
+        time_type = #{timeType,jdbcType=INTEGER},
+      </if>
+      <if test="attributeNameInDb != null">
+        attribute_name_in_db = #{attributeNameInDb,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue != null">
+        attribute_value = #{attributeValue,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where bh = #{bh,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.mbg.model.XkjcZbxGcdYj">
+    update xkjc_zbx_gcd_yj
+    set yj_gcd_mc = #{yjGcdMc,jdbcType=VARCHAR},
+      zbx_bh = #{zbxBh,jdbcType=VARCHAR},
+      zbx_mc = #{zbxMc,jdbcType=VARCHAR},
+      gcd_bh = #{gcdBh,jdbcType=VARCHAR},
+      gcd_mc = #{gcdMc,jdbcType=VARCHAR},
+      filter = #{filter,jdbcType=VARCHAR},
+      time_type = #{timeType,jdbcType=INTEGER},
+      attribute_name_in_db = #{attributeNameInDb,jdbcType=VARCHAR},
+      attribute_value = #{attributeValue,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where bh = #{bh,jdbcType=INTEGER}
+  </update>
+</mapper>

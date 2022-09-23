@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mbg.mapper.ReportAnalysisMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.mbg.model.ReportAnalysis">
+    <id column="bh" jdbcType="INTEGER" property="bh" />
+    <result column="module_id" jdbcType="VARCHAR" property="moduleId" />
+    <result column="module_bh" jdbcType="VARCHAR" property="moduleBh" />
+    <result column="gcd_bh" jdbcType="VARCHAR" property="gcdBh" />
+    <result column="subject_analysis" jdbcType="VARCHAR" property="subjectAnalysis" />
+    <result column="subject_code" jdbcType="VARCHAR" property="subjectCode" />
+    <result column="subject_statistical_caliber" jdbcType="VARCHAR" property="subjectStatisticalCaliber" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="report_order" jdbcType="INTEGER" property="reportOrder" />
+    <result column="is_show" jdbcType="INTEGER" property="isShow" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.demo.mbg.model.ReportAnalysis">
+    <result column="report_describe" jdbcType="LONGVARCHAR" property="reportDescribe" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    bh, module_id, module_bh, gcd_bh, subject_analysis, subject_code, subject_statistical_caliber, 
+    type, report_order, is_show, create_user, create_time, update_user, update_time
+  </sql>
+  <sql id="Blob_Column_List">
+    report_describe
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.example.demo.mbg.model.ReportAnalysisExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from report_analysis
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.example.demo.mbg.model.ReportAnalysisExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from report_analysis
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from report_analysis
+    where bh = #{bh,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from report_analysis
+    where bh = #{bh,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.demo.mbg.model.ReportAnalysisExample">
+    delete from report_analysis
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.mbg.model.ReportAnalysis">
+    <selectKey keyProperty="bh" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into report_analysis (module_id, module_bh, gcd_bh, 
+      subject_analysis, subject_code, subject_statistical_caliber, 
+      type, report_order, is_show, 
+      create_user, create_time, update_user, 
+      update_time, report_describe)
+    values (#{moduleId,jdbcType=VARCHAR}, #{moduleBh,jdbcType=VARCHAR}, #{gcdBh,jdbcType=VARCHAR}, 
+      #{subjectAnalysis,jdbcType=VARCHAR}, #{subjectCode,jdbcType=VARCHAR}, #{subjectStatisticalCaliber,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{reportOrder,jdbcType=INTEGER}, #{isShow,jdbcType=INTEGER}, 
+      #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{reportDescribe,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.mbg.model.ReportAnalysis">
+    <selectKey keyProperty="bh" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into report_analysis
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="moduleId != null">
+        module_id,
+      </if>
+      <if test="moduleBh != null">
+        module_bh,
+      </if>
+      <if test="gcdBh != null">
+        gcd_bh,
+      </if>
+      <if test="subjectAnalysis != null">
+        subject_analysis,
+      </if>
+      <if test="subjectCode != null">
+        subject_code,
+      </if>
+      <if test="subjectStatisticalCaliber != null">
+        subject_statistical_caliber,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="reportOrder != null">
+        report_order,
+      </if>
+      <if test="isShow != null">
+        is_show,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="reportDescribe != null">
+        report_describe,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleBh != null">
+        #{moduleBh,jdbcType=VARCHAR},
+      </if>
+      <if test="gcdBh != null">
+        #{gcdBh,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectAnalysis != null">
+        #{subjectAnalysis,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectCode != null">
+        #{subjectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectStatisticalCaliber != null">
+        #{subjectStatisticalCaliber,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="reportOrder != null">
+        #{reportOrder,jdbcType=INTEGER},
+      </if>
+      <if test="isShow != null">
+        #{isShow,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reportDescribe != null">
+        #{reportDescribe,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.demo.mbg.model.ReportAnalysisExample" resultType="java.lang.Integer">
+    select count(*) from report_analysis
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update report_analysis
+    <set>
+      <if test="record.bh != null">
+        bh = #{record.bh,jdbcType=INTEGER},
+      </if>
+      <if test="record.moduleId != null">
+        module_id = #{record.moduleId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.moduleBh != null">
+        module_bh = #{record.moduleBh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gcdBh != null">
+        gcd_bh = #{record.gcdBh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subjectAnalysis != null">
+        subject_analysis = #{record.subjectAnalysis,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subjectCode != null">
+        subject_code = #{record.subjectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subjectStatisticalCaliber != null">
+        subject_statistical_caliber = #{record.subjectStatisticalCaliber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.reportOrder != null">
+        report_order = #{record.reportOrder,jdbcType=INTEGER},
+      </if>
+      <if test="record.isShow != null">
+        is_show = #{record.isShow,jdbcType=INTEGER},
+      </if>
+      <if test="record.createUser != null">
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateUser != null">
+        update_user = #{record.updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.reportDescribe != null">
+        report_describe = #{record.reportDescribe,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update report_analysis
+    set bh = #{record.bh,jdbcType=INTEGER},
+      module_id = #{record.moduleId,jdbcType=VARCHAR},
+      module_bh = #{record.moduleBh,jdbcType=VARCHAR},
+      gcd_bh = #{record.gcdBh,jdbcType=VARCHAR},
+      subject_analysis = #{record.subjectAnalysis,jdbcType=VARCHAR},
+      subject_code = #{record.subjectCode,jdbcType=VARCHAR},
+      subject_statistical_caliber = #{record.subjectStatisticalCaliber,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      report_order = #{record.reportOrder,jdbcType=INTEGER},
+      is_show = #{record.isShow,jdbcType=INTEGER},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_user = #{record.updateUser,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      report_describe = #{record.reportDescribe,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update report_analysis
+    set bh = #{record.bh,jdbcType=INTEGER},
+      module_id = #{record.moduleId,jdbcType=VARCHAR},
+      module_bh = #{record.moduleBh,jdbcType=VARCHAR},
+      gcd_bh = #{record.gcdBh,jdbcType=VARCHAR},
+      subject_analysis = #{record.subjectAnalysis,jdbcType=VARCHAR},
+      subject_code = #{record.subjectCode,jdbcType=VARCHAR},
+      subject_statistical_caliber = #{record.subjectStatisticalCaliber,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      report_order = #{record.reportOrder,jdbcType=INTEGER},
+      is_show = #{record.isShow,jdbcType=INTEGER},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_user = #{record.updateUser,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.mbg.model.ReportAnalysis">
+    update report_analysis
+    <set>
+      <if test="moduleId != null">
+        module_id = #{moduleId,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleBh != null">
+        module_bh = #{moduleBh,jdbcType=VARCHAR},
+      </if>
+      <if test="gcdBh != null">
+        gcd_bh = #{gcdBh,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectAnalysis != null">
+        subject_analysis = #{subjectAnalysis,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectCode != null">
+        subject_code = #{subjectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectStatisticalCaliber != null">
+        subject_statistical_caliber = #{subjectStatisticalCaliber,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="reportOrder != null">
+        report_order = #{reportOrder,jdbcType=INTEGER},
+      </if>
+      <if test="isShow != null">
+        is_show = #{isShow,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reportDescribe != null">
+        report_describe = #{reportDescribe,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where bh = #{bh,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.demo.mbg.model.ReportAnalysis">
+    update report_analysis
+    set module_id = #{moduleId,jdbcType=VARCHAR},
+      module_bh = #{moduleBh,jdbcType=VARCHAR},
+      gcd_bh = #{gcdBh,jdbcType=VARCHAR},
+      subject_analysis = #{subjectAnalysis,jdbcType=VARCHAR},
+      subject_code = #{subjectCode,jdbcType=VARCHAR},
+      subject_statistical_caliber = #{subjectStatisticalCaliber,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      report_order = #{reportOrder,jdbcType=INTEGER},
+      is_show = #{isShow,jdbcType=INTEGER},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      report_describe = #{reportDescribe,jdbcType=LONGVARCHAR}
+    where bh = #{bh,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.mbg.model.ReportAnalysis">
+    update report_analysis
+    set module_id = #{moduleId,jdbcType=VARCHAR},
+      module_bh = #{moduleBh,jdbcType=VARCHAR},
+      gcd_bh = #{gcdBh,jdbcType=VARCHAR},
+      subject_analysis = #{subjectAnalysis,jdbcType=VARCHAR},
+      subject_code = #{subjectCode,jdbcType=VARCHAR},
+      subject_statistical_caliber = #{subjectStatisticalCaliber,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      report_order = #{reportOrder,jdbcType=INTEGER},
+      is_show = #{isShow,jdbcType=INTEGER},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where bh = #{bh,jdbcType=INTEGER}
+  </update>
+</mapper>

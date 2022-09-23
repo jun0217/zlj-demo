@@ -1,0 +1,72 @@
+package codegen;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import ins.framework.mybatis.generator.GenConfig;
+import ins.framework.mybatis.generator.GenParam;
+import ins.framework.mybatis.generator.GenType;
+import ins.framework.mybatis.generator.Generator;
+
+逆向生成
+
+public class CodeGenerator {
+
+	public static void main(String[] args) {
+		List<GenParam> paramList = new ArrayList<GenParam>();
+		/**
+		 * 请保持生成参数的完整，不要注释
+		 */
+		/*paramList.add(new GenParam("zuul", new String[] { "zuul_gateway"}));
+		paramList.add(new GenParam("sys", new String[] { "sys_application","sys_area_dict","sys_cas_login","sys_trans_config"}));
+		paramList.add(new GenParam("shortmenu", new String[] { "smc_menu_shortcut"}));
+		paramList.add(new GenParam("sdd", new String[] { "sdd_code","sdd_type"}));
+		paramList.add(new GenParam("rtlimit", new String[] { "zuul_rate_limit"}));
+		paramList.add(new GenParam("robot", new String[] { "demo_robot_job","demo_robot_main"}));
+		paramList.add(new GenParam("msg", new String[] { "msg_info"}));
+		paramList.add(new GenParam("menu", new String[] { "smc_menu"}));
+		paramList.add(new GenParam("bpo", new String[] { "bpo_customer","bpo_file","bpo_file_cfg","bpo_file_folder","bpo_task","bpo_user_customer","image_source"}));
+		paramList.add(new GenParam("bpm", new String[] { "bpm_node","bpm_process_instance","bpm_task","bpm_task_potowners"}));*/
+		paramList.add(new GenParam("monitordata", new String[] {"dis_dissentinfo"}));
+
+		GenConfig gc = new GenConfig();
+		//gc.setBasePackage("ins.platform");
+		gc.setBasePackage("flex.picc");
+		// 设置要忽略的表名前缀，默认空
+		gc.setIgnoreTablePrefixs(new String[] { "prpl", "pprd", "ag" });
+		// 设置PO是否保留前缀(设置忽略表名前缀时)，默认true
+		gc.setKeepPrefixForPO(false);
+		// 设置取操作时间函数，默认空
+		gc.setOperateTimeForHisFunc("now()");
+		// 设置是否默认开启二级缓存（影响base中的MapperXML），默认false
+		gc.setDefaultCache(false);
+		// mysql 数据库相关配置
+		// 设置基本保存目录（Java源代码根目录）
+		// gc.setSaveDir("D:/Work/lab_cloud/server/misc/misc-server/src/main/java");
+		gc.setSaveDir("E:\\gitworkspace\\monitor-server\\src\\main\\java");
+		// 可代码指定vo和xml的位置
+		// gc.setSaveDirForVo(new File(gc.getSaveDir(),
+		// "../../../../misc-vo/src/main/java").getAbsolutePath());
+		// gc.setSaveDirForXml(new File(gc.getSaveDir(),
+		// "../resources/mapper").getAbsolutePath());
+		//gc.setDbDriverName("com.mysql.jdbc.Driver");
+		gc.setDbDriverName("org.postgresql.Driver");
+		gc.setDbUser("");
+		//gc.setDbSchema("platform_devdb");//mysql中用这个，pgsql中不用
+		gc.setDbPassword("");
+		gc.setDbUrl("jdbc:postgresql://10.10.26.65:5432/monitordb00?characterEncoding=utf-8&autoReconnect=true");
+		// 支持生成的文件类型:生成PO、BASE_MAPPER_XML（自动覆盖）、Dao、VO、MapperXML（不覆盖）
+		gc.setGenTypes(
+				new GenType[] { GenType.VO, GenType.PO, GenType.DAO, GenType.BASE_MAPPER_XML, GenType.MAPPER_XML });
+		/*gc.setGenTypes(
+				new GenType[] { GenType.BASE_MAPPER_XML});*/
+		Generator generator = new Generator();
+		generator.setGenConfig(gc);
+		generator.setParamList(paramList);
+		generator.generate();
+	}
+}
+<dependency>
+            <groupId>ins.framework</groupId>
+            <artifactId>ins-framework-mybatis-generator</artifactId>
+        </dependency>
