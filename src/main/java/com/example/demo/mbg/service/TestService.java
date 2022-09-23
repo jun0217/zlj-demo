@@ -1,7 +1,6 @@
-package com.example.demo.service;
+package com.example.demo.mbg.service;
 
 import com.example.demo.mbg.model.XkjcXk;
-import com.example.demo.mbg.model.XkjcXkExample;
 import com.example.demo.mbg.pojo.XkjcXKPOJO;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

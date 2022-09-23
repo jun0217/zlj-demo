@@ -1,4 +1,4 @@
-package com.example.demo.service.impl;
+package com.example.demo.mbg.service.impl;
 
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.excel.EasyExcel;
@@ -13,7 +13,7 @@ import com.example.demo.mbg.mapper.XkjcXkMapper;
 import com.example.demo.mbg.model.XkjcXk;
 import com.example.demo.mbg.model.XkjcXkExample;
 import com.example.demo.mbg.pojo.XkjcXKPOJO;
-import com.example.demo.service.TestService;
+import com.example.demo.mbg.service.TestService;
 import com.github.pagehelper.PageHelper;
 import javafx.util.Pair;
 import org.springframework.beans.BeanUtils;

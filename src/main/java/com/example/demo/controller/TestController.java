@@ -2,13 +2,11 @@ package com.example.demo.controller;
 
 import com.example.demo.config.util.ExportExcel;
 import com.example.demo.mbg.model.XkjcXk;
-import com.example.demo.mbg.model.XkjcXkExample;
 import com.example.demo.mbg.pojo.XkjcXKPOJO;
-import com.example.demo.service.TestService;
+import com.example.demo.mbg.service.TestService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.hibernate.criterion.Example;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
