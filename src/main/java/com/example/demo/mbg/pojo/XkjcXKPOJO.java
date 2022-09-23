@@ -22,7 +22,6 @@ import java.util.Date;
 public class XkjcXKPOJO implements Serializable {
     @ExcelProperty(value = {"学科信息","编号"},order = 10)
     private Integer bh;
-
     @ExcelProperty(value = {"学科信息","学科编号"},order = 10)
     private String xkBh;
 
