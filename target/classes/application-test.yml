@@ -1,8 +1,0 @@
-server:
-  port: 8080
-spring:
-  datasource:
-    url: jdbc:mysql://10.120.67.133:3307/cnki_dcbase_bjhkhtdx_test?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
-    username: root
-    password: xkdsj123
-

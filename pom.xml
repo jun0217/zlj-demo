@@ -129,6 +129,7 @@
             <artifactId>hutool-all</artifactId>
             <version>5.5.1</version>
         </dependency>
+        <!--lombok-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -138,7 +139,6 @@
             <groupId>ins.framework</groupId>
             <artifactId>ins-framework-mybatis</artifactId>
         </dependency>
-
     </dependencies>
 
     <build>

@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@Service
 public interface TestService {
     List<XkjcXk> selectByExample(XkjcXk xkjcXk);
 
