@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.config.util.ExportExcel;
+import com.example.demo.common.util.ExportExcel;
 import com.example.demo.mbg.model.XkjcXk;
 import com.example.demo.mbg.pojo.XkjcXKPOJO;
 import com.example.demo.mbg.service.TestService;

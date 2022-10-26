@@ -1,4 +1,4 @@
-package com.example.demo.config.util;
+package com.example.demo.common.util;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -6,7 +6,7 @@ import java.util.Random;
 
 /**
  * @author
- * @Des TODO
+ * @Des 生成验证码工具类
  * @Date 2022/9/28 17:06
  **/
 public class VerifyUtil {

@@ -1,3 +1,16 @@
 请求地址：http://127.0.0.1:8080/swagger-ui.html
 token提交到git使用密码：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
 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
+
+
+自定义注解以及切面
+全局异常
+过滤器
+拦截器
+登录验证码
+
+
+
+配置中心：Nacos  abolo
+
+

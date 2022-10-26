@@ -1,4 +1,4 @@
-package com.example.demo.config.util;
+package com.example.demo.common.util;
 
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.context.AnalysisContext;

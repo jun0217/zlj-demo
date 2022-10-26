@@ -24,3 +24,8 @@ pagehelper:
 logging:
   level:
     com.example.demo.mbg.mapper.* : debug
+    root: info
+    com.wzyblog: debug
+  file:
+    name: log/blog-dev.log
+

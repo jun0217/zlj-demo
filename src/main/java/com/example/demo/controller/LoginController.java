@@ -1,24 +1,19 @@
 package com.example.demo.controller;
 
-import com.example.demo.config.util.VerifyUtil;
+import com.example.demo.common.annotation.OpLog;
+import com.example.demo.common.util.VerifyUtil;
 import com.example.demo.mbg.service.impl.LoginServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.imageio.ImageIO;
-import javax.imageio.stream.ImageOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
@@ -62,6 +57,7 @@ public class LoginController {
     
     @ApiOperation(value = "验证码")
     @GetMapping("/verifyCode")
+    @OpLog(type = "login")
     public void verifyCode(HttpServletRequest request, HttpServletResponse response) {
         Object[] verify = VerifyUtil.createimage();
         request.getSession().setAttribute("verifyCode", verify[0]);
