@@ -13,7 +13,7 @@ import com.example.demo.mbg.mapper.XkjcXkMapper;
 import com.example.demo.mbg.model.XkjcXk;
 import com.example.demo.mbg.model.XkjcXkExample;
 import com.example.demo.mbg.pojo.XkjcXKPOJO;
-import com.example.demo.mbg.service.TestService;
+import com.example.demo.mbg.service.repository.TestService;
 import com.github.pagehelper.PageHelper;
 import javafx.util.Pair;
 import org.springframework.beans.BeanUtils;
@@ -142,7 +142,7 @@ public class TestServiceImpl implements TestService {
         string.remove("b");
     }
     
-    public static void main(String[] args) throws IOException {
+    public static void main02(String[] args) throws IOException {
         //txt文件生成的位置
         File outFile = new File("D:\\Desktop\\test\\test.txt");
         //Writer out;

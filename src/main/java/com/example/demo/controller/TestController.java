@@ -3,7 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.common.util.ExportExcel;
 import com.example.demo.mbg.model.XkjcXk;
 import com.example.demo.mbg.pojo.XkjcXKPOJO;
-import com.example.demo.mbg.service.TestService;
+import com.example.demo.mbg.service.repository.TestService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;

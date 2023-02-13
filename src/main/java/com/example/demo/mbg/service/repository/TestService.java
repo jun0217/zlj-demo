@@ -1,4 +1,4 @@
-package com.example.demo.mbg.service;
+package com.example.demo.mbg.service.repository;
 
 import com.example.demo.mbg.model.XkjcXk;
 import com.example.demo.mbg.pojo.XkjcXKPOJO;
